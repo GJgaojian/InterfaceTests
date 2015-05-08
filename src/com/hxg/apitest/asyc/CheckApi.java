@@ -19,22 +19,22 @@ public class CheckApi extends AsyncTask<APIEntity, Integer, String>{
 	@Override
 	protected String doInBackground(APIEntity... apiEntity) {
 		// TODO Auto-generated method stub
-		String strr = null;
+		String result = null;
 		if (apiEntity[0].getMethod().equalsIgnoreCase("post")) {
 			System.out.println("`````post");
-			strr = PostUtil.sendPostAndGetInfo(apiEntity[0].getUrl(),
+			result = PostUtil.sendPostAndGetInfo(apiEntity[0].getUrl(),
 					apiEntity[0].getParams());
 		} else {
 			System.out.println("``````get");
-			strr = GetUtil.sendRequest(apiEntity[0].getUrl(),
+			result = GetUtil.sendRequest(apiEntity[0].getUrl(),
 					apiEntity[0].getParams());
 		}
-		if(strr!=null){
-			apiEntity[0].setResult(strr);
+		if(result!=null){
+			apiEntity[0].setResult(result);
 			apiEntity[0].setFlag(true);
 		}
 		apiEntity[0].setState(2);
-		return strr;
+		return result;
 	}
 
 	@Override
